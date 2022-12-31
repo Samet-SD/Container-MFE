@@ -1,4 +1,4 @@
-import { launch as launchOne} from "payments/Payments";
+import { mount } from "structure/Structure";
 import React, { useRef, useEffect } from 'react';
 // the useEffect hook is gonna make sure we can run code just one single time when this component is first displayed
 export default () => {
@@ -7,7 +7,7 @@ export default () => {
     // Now we need to take that element ref and provide it to the launch function, so we only try to call the launch function one time 
     
     useEffect(() => {
-        launchOne(ref.current);
+        mount(ref.current);
         //that is the reference to the HTML Element, we are passing it into the launch function, launch takes it and its 
         //gonna try to create an instance of Payments and render it into the div down there
         // The Code is really good because it is pretty much fully reusable

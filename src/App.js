@@ -1,11 +1,14 @@
 import React from 'react'
 import Payments from './components/Payments'
+import Structure from './components/Structure'
 import Transactions from './components/Transactions'
 const App = () => {
   return (
     <div>
+    <Structure />  
     <Payments />
     <Transactions />
+    
     </div>
   )
 }

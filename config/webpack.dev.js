@@ -18,7 +18,8 @@ const devConfig = {
             name: 'container',
             remotes: {
                 payments: 'payments@http://localhost:8081/remoteEntry.js',
-                transactions: 'transactions@http://localhost:8083/remoteEntry.js'
+                transactions: 'transactions@http://localhost:8083/remoteEntry.js',
+                structure: 'structure@http://localhost:8082/remoteEntry.js'
             },
             shared: packageJson.dependencies,
         }),
