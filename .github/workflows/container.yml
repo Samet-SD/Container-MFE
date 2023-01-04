@@ -18,7 +18,7 @@ jobs:
       - name: Checkout GutHub actions
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm install
 
       - name: Build
