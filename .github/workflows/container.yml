@@ -17,8 +17,10 @@ jobs:
     steps:
       - name: Checkout GutHub actions
         uses: actions/checkout@v2
+
       - name: Install dependencies
         run: npm install
+
       - name: Build
         run: npm run build
 
