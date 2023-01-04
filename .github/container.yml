@@ -12,7 +12,7 @@ on:
     branches:
       - origin/main
     paths:
-      - "Container/**"
+      - "smartpay_3.0/Container/**"
 defaults:
   run:
     working-directory: Container
