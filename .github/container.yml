@@ -10,7 +10,7 @@ name: deploy-mfe-container
 on:
   push:
     branches:
-      - origin/main
+      - main
     paths:
       - 'Package/Container/**'
 defaults:
