@@ -1,12 +1,5 @@
 name: deploy-mfe-container
 
-#on-property: this gonna designate when we want 
-#to run workflow, what events are we watching for?
-#we will watch only the push events on the branch main
-#this workflow should only run whenever we make a change 
-#specially to our container project, add at the same level as 
-#branches, paths: the path says only run
-#this workflow when we make a change on the container
 on:
   push:
     branches:
@@ -16,11 +9,7 @@ on:
 defaults:
   run:
     working-directory: Package/Container
-#sets our execution evironment to inside of our container directory
-#build will first build and then deploy our project
-#in steps we specifiy our commands that we want to execute
-#First: The code needs to be loaded inside the virtual machine env. 
-#Npm install will install all dependencies into our project
+
 jobs:
     build:
       runs-on: ubuntu-latest
@@ -29,36 +18,10 @@ jobs:
         - uses: actions/checkout@v2
         - run: npm install
         - run: npm run build 
-        
-        
-        # run our webpack build process, so generate the dist directory
 
-        #some configuration for AWS, so after we build our project, 
-        #we want to deploy it off to amazon s3
-        # for that we will use the AWS CLI, it gives us 
-        #programmatic access to amazon web services 
-        #to get access to the cli we are gonna put in a
-        # dash uses, that is gonna give us acces to the aws cli
-        
         -uses: shinyinc/action-aws-cli@v1.2
         - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
-        #we are going to use the cli ro run a command, so we will reach out to
-        #the s3 feature specifically inside that cli, and we are going to sync
-        #our distribution directory (dist.folder), that was created when we 
-        #built our project, so we are gonna sync the contents of that directory
-        #with an s3 bucket or essentially a place where we can store files on aws, 
-        #so we want to specify the name of the bucket that we want to sync this 
-        #project into. 
+      
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ""
-
-
-      # Summary-workflow: install dependencies, build a thing and then try sync all these files off to aws s3
-      ##Still needs to set up AWS for sync, so create some bucket where it can actually deploy our application too.
-      #How to test the setup:
-      #git add . , git commit -m"created container deploy script", git push origin main, 
-      # go to github inside my browser, actions, and you can see the workflow running, you can see if it is successfull or not
-
-
