@@ -1,13 +1,16 @@
 name: deploy-mfe-container
 
-#on-property: this gonna designate when we want to run workflow, what events are we watching for?
+#on-property: this gonna designate when we want 
+#to run workflow, what events are we watching for?
 #we will watch only the push events on the branch main
-#this workflow should only run whenever we make a change specially to our container project, add at the same level as branches, paths: the path says only run
+#this workflow should only run whenever we make a change 
+#specially to our container project, add at the same level as 
+#branches, paths: the path says only run
 #this workflow when we make a change on the container
 on:
   push:
     branches:
-      - main
+      - origin/main
     paths:
       - "Container/**"
 defaults:
@@ -25,17 +28,26 @@ jobs:
       steps: 
         - uses: actions/checkout@v2
         - run: npm install
-        - run: npm run build # run our webpack build process, so generate the dist directory
+        - run: npm run build 
+        
+        
+        # run our webpack build process, so generate the dist directory
 
-        #some configuration for AWS, so after we build our project, we want to deploy it off to amazon s3
-        # for that we will use the AWS CLI, it gives us programmatic access to amazon web services 
-        #to get access to the cli we are gonna put in a dash uses, that is gonna give us acces to the aws cli
+        #some configuration for AWS, so after we build our project, 
+        #we want to deploy it off to amazon s3
+        # for that we will use the AWS CLI, it gives us 
+        #programmatic access to amazon web services 
+        #to get access to the cli we are gonna put in a
+        # dash uses, that is gonna give us acces to the aws cli
         
         -uses: shinyinc/action-aws-cli@v1.2
         - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
-        #we are going to use the cli ro run a command, so we will reach out to the s3 feature specifically inside that cli, and we are going to sync
-        #our distribution directory (dist.folder), that was created when we built our project, so we are gonna sync the contents of that directory
-        #with an s3 bucket or essentially a place where we can store files on aws, so we want to specify the name of the bucket that we want to sync this 
+        #we are going to use the cli ro run a command, so we will reach out to
+        #the s3 feature specifically inside that cli, and we are going to sync
+        #our distribution directory (dist.folder), that was created when we 
+        #built our project, so we are gonna sync the contents of that directory
+        #with an s3 bucket or essentially a place where we can store files on aws, 
+        #so we want to specify the name of the bucket that we want to sync this 
         #project into. 
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
