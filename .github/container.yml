@@ -12,10 +12,10 @@ on:
     branches:
       - origin/main
     paths:
-      - 'smartpay_3.0/Container/**'
+      - 'Package/Container/**'
 defaults:
   run:
-    working-directory: smartpay_3.0/Container
+    working-directory: Package/Container
 #sets our execution evironment to inside of our container directory
 #build will first build and then deploy our project
 #in steps we specifiy our commands that we want to execute
