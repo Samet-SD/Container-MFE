@@ -1,4 +1,4 @@
-name: deploy-mfe-container
+name: deployment
 
 on:
   push:
