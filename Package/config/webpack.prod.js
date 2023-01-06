@@ -16,7 +16,7 @@ const prodConfig = {
         name: 'container',
         remotes: {
             //payments: `payments@${domain}/payments/remoteEntry.js`,
-            transactions: `transaction@${domain}/transactions/latest/remoteEntry.js`,
+            transactions: `transactions@${domain}/transactions/latest/remoteEntry.js`,
             //structure: `structure@${domain}/structure/remoteEntry.js`
         },
         shared: packageJson.dependencies
