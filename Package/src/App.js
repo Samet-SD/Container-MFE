@@ -5,13 +5,11 @@ import Transactions from './components/Transactions'
 const App = () => {
   return (
     <div>
-   
+    <Structure />  
     <Transactions />
-    
+    <Payments />
     </div>
   )
 }
 //So we can render some other content inside of react app and show inside of here at the same time the payments app
 export default App
-// <Structure />  
-//<Payments />
