@@ -9,7 +9,7 @@ const devConfig = {
     devServer: {
         port: 8080,
         historyApiFallback:{
-            index: 'index.html'
+            index: '/index.html'
         }
     },
 
@@ -21,7 +21,13 @@ const devConfig = {
                 transactions: 'transactions@http://localhost:8083/remoteEntry.js',
                 structure: 'structure@http://localhost:8082/remoteEntry.js'
             },
-            shared: packageJson.dependencies,
+            //shared: packageJson.dependencies,
+            shared: {
+                react: {
+                    singleton: true,
+                },
+                
+            }
         }),
         new HtmlWebpackPlugin(
             {

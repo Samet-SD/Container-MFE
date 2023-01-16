@@ -19,7 +19,13 @@ const prodConfig = {
             transactions: `transactions@${domain}/transactions/latest/remoteEntry.js`,
             structure: `structure@${domain}/structure/latest/remoteEntry.js`
         },
-        shared: packageJson.dependencies
+        //shared: packageJson.dependencies
+        shared: {
+            react: {
+                singleton: true,
+            },
+            
+        }
     })
 
    ]
