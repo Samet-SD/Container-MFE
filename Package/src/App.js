@@ -18,7 +18,6 @@ const App = () => {
       <Payments />
     </Route>
     </Switch>
-   
     </div>
     </BrowserRouter>
   )
